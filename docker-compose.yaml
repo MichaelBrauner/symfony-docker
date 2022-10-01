@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  php:
+    build:
+      context: .
+      target: app_php
+    restart: unless-stopped
+    volumes:
+      - ./:/srv/app
+      - ./docker/php/php-fpm.d/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
+      - php_socket:/var/run/php
+
+  web:
+    build:
+      context: .
+      target: app_nginx
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./public:/srv/app/public:ro
+      - php_socket:/var/run/php
+    ports:
+      - "8080:80"
+volumes:
+  php_socket:
