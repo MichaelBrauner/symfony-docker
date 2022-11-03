@@ -5,3 +5,12 @@ services:
   php:
     environment:
       APP_SECRET: ${APP_SECRET}
+
+  web:
+    volumes:
+      - ./docker/certbot/www:/var/www/certbot/:ro
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./docker/certbot/www/:/var/www/certbot/:rw

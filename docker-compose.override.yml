@@ -17,3 +17,7 @@ services:
     extra_hosts:
       # Ensure that host.docker.internal is correctly defined on Linux
       - host.docker.internal:host-gateway
+
+  web:
+    volumes:
+      - ./docker/nginx/ssl:/etc/nginx/ssl/private/:ro

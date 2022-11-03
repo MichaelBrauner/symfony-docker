@@ -129,4 +129,3 @@ RUN rm -f .env.local.php
 FROM nginx:${NGINX_VERSION}-alpine as app_nginx
 RUN adduser -u 1000 -D -S -G www-data www-data
 WORKDIR /srv/app/public
-
