@@ -9,9 +9,11 @@ With NGINX we have to take care of it on our own.
 
 ### Self Signed (for local development)
 
+First, create your certificate, key and dhparam file(s).
+This must only be done once and may take a while.
+
 ```shell
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ./docker/nginx/ssl/server.key -out ./docker/nginx/ssl/server.crt
-sudo openssl dhparam -out ./docker/nginx/ssl/dhparam.pem 4096
+./create-all-certificates.sh
 ```
 
 ### Production Certificates (with certbot)

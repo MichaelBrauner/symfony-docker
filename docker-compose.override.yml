@@ -20,4 +20,4 @@ services:
 
   web:
     volumes:
-      - ./docker/nginx/ssl:/etc/nginx/ssl/private/:ro
+      - ./docker/nginx/ssl:/etc/nginx/ssl/:ro

@@ -1,9 +1,3 @@
-.DS_STORE
-*/**/.DS_STORE
-.idea
-docker/nginx/ssl/dhparam.pem
-docker/nginx/ssl/server.crt
-docker/nginx/ssl/server.key
 
 ###> symfony/framework-bundle ###
 /.env.local

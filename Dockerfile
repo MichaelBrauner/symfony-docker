@@ -21,8 +21,8 @@ RUN apk add --no-cache \
 		fcgi \
 		file \
 		gettext \
-		git \
-	;
+		git  \
+        linux-headers;
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
@@ -30,23 +30,18 @@ RUN set -eux; \
 		icu-data-full \
 		icu-dev \
 		libzip-dev \
-		zlib-dev \
-	; \
+		zlib-dev; \
 	\
 	docker-php-ext-configure zip; \
 	docker-php-ext-install -j$(nproc) \
 		intl \
-		zip \
-	; \
+		zip; \
 	pecl install \
-		apcu \
-	; \
+		apcu; \
 	pecl clear-cache; \
 	docker-php-ext-enable \
 		apcu \
-		opcache \
-	; \
-	\
+		opcache; \
 	runDeps="$( \
 		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
 			| tr ',' '\n' \
@@ -125,7 +120,7 @@ RUN set -eux; \
 
 RUN rm -f .env.local.php
 
-
 FROM nginx:${NGINX_VERSION}-alpine as app_nginx
 RUN adduser -u 1000 -D -S -G www-data www-data
+
 WORKDIR /srv/app/public
